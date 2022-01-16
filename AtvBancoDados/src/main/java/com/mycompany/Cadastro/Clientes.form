@@ -53,7 +53,9 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Cliente"/>
+            <TitledBorder title="Cliente">
+              <Font PropertyName="font" name="Tahoma" size="24" style="0"/>
+            </TitledBorder>
           </Border>
         </Property>
       </Properties>
@@ -140,6 +142,10 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Nome:"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel1MouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel1MouseExited"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -148,6 +154,10 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Login:"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel2MouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel2MouseExited"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -156,10 +166,20 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Email:"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel3MouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel3MouseExited"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTNomeCliente">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jTNomeCliente = DefinirTiposCaracteresETamanho(60, &quot; abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#xe7;&#xc7;&#xe9;&#xe1;&#xed;&#xfa;&#xf3;&#xc1;&#xc9;&#xd3;&#xcd;&#xda;&#xe3;&#xf5;&#xc3;&#xd5;&quot;);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTEmailCliente">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jTEmailCliente = DefinirTiposCaracteresETamanho(60, &quot; abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#xe7;&#xc7;&#xe9;&#xe1;&#xed;&#xfa;&#xf3;&#xc1;&#xc9;&#xd3;&#xcd;&#xda;&#xe3;&#xf5;&#xc3;&#xd5;,0,1,2,3,4,5,6,7,8,9,_,-,@,.,&quot;);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>

@@ -5,8 +5,8 @@
  */
 package com.mycompany.Cadastro;
 
-import DAO.VideoDAO;
-import Model.Video;
+import DAO.AvaliadorDAO;
+import Model.Avaliador;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -15,12 +15,12 @@ import javax.swing.JTextField;
  *
  * @author User
  */
-public class Videos extends javax.swing.JFrame {
+public class Avaliadores extends javax.swing.JFrame {
 
     /**
-     * Creates new form Video
+     * Creates new form Avaliador
      */
-    public Videos() {
+    public Avaliadores() {
         initComponents();
     }
 
@@ -37,22 +37,22 @@ public class Videos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTUrlVideo = new javax.swing.JTextField();
-        jTNomeVideo = new javax.swing.JTextField();
-        jTNomeDonoVideo = new javax.swing.JTextField();
-        jTTipoVideo = new javax.swing.JTextField();
+        jTCpfAvaliador = new javax.swing.JTextField();
+        jTNomeAvaliador = new javax.swing.JTextField();
+        jTEmailAvaliador = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jTLoginAvaliador = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Video");
+        setTitle("Cadastro de Avaliador");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Video", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Avaliador", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Url:");
+        jLabel1.setText("Cpf:");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel1MouseEntered(evt);
@@ -63,7 +63,7 @@ public class Videos extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Nome video:");
+        jLabel2.setText("Nome:");
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel2MouseEntered(evt);
@@ -74,7 +74,7 @@ public class Videos extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Nomde do dono do video:");
+        jLabel3.setText("Email:");
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel3MouseEntered(evt);
@@ -84,22 +84,21 @@ public class Videos extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Tipo:");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel4MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel4MouseExited(evt);
+        jTCpfAvaliador = DefinirTiposCaracteresETamanho(16, " 0,1,2,3,4,5,6,7,8,9,.,-,,+,,(,)");
+        jTCpfAvaliador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTCpfAvaliadorActionPerformed(evt);
             }
         });
 
-        jTNomeVideo = DefinirTiposCaracteresETamanho(60, " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇéáíúóÁÉÓÍÚãõÃÕ");
+        jTNomeAvaliador = DefinirTiposCaracteresETamanho(60, " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇéáíúóÁÉÓÍÚãõÃÕ");
 
-        jTNomeDonoVideo = DefinirTiposCaracteresETamanho(60, " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇéáíúóÁÉÓÍÚãõÃÕ");
-
-        jTTipoVideo = DefinirTiposCaracteresETamanho(60, " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇéáíúóÁÉÓÍÚãõÃÕ");
+        jTEmailAvaliador = DefinirTiposCaracteresETamanho(60, " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇéáíúóÁÉÓÍÚãõÃÕ,0,1,2,3,4,5,6,7,8,9,_,-,@,.,");
+        jTEmailAvaliador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTEmailAvaliadorActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton2.setText("Clear");
@@ -117,61 +116,65 @@ public class Videos extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Login:");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel4MouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTUrlVideo)
-                            .addComponent(jTNomeVideo)
-                            .addComponent(jTNomeDonoVideo)
-                            .addComponent(jTTipoVideo))
-                        .addGap(10, 10, 10))))
+                        .addGap(264, 264, 264)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTCpfAvaliador, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+                        .addComponent(jTNomeAvaliador)
+                        .addComponent(jTEmailAvaliador))
+                    .addComponent(jTLoginAvaliador, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jTUrlVideo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jTNomeVideo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(45, 45, 45)
+                .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTNomeDonoVideo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
+                    .addComponent(jLabel1)
+                    .addComponent(jTCpfAvaliador, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTNomeAvaliador, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTTipoVideo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                    .addComponent(jTLoginAvaliador, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                    .addComponent(jTEmailAvaliador, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(38, 38, 38)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -186,23 +189,21 @@ public class Videos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(101, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
+                .addContainerGap(69, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(40, 40, 40)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(36, 36, 36))
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -225,20 +226,28 @@ public class Videos extends javax.swing.JFrame {
         
             
     }
+    private void jTEmailAvaliadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTEmailAvaliadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTEmailAvaliadorActionPerformed
+
+    private void jTCpfAvaliadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCpfAvaliadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTCpfAvaliadorActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.jTCpfAvaliador.setText("");
+        this.jTNomeAvaliador.setText("");
+        this.jTLoginAvaliador.setText("");
+        this.jTEmailAvaliador.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.jTUrlVideo.setText("");
-        this.jTNomeVideo.setText("");
-        this.jTTipoVideo.setText("");
-        this.jTNomeDonoVideo.setText("");
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
         jLabel1.setForeground(Color.RED);
-        jLabel1.setToolTipText("Digite a url do vídeo");
+        jLabel1.setToolTipText("Digite o cpf do avaliador");
     }//GEN-LAST:event_jLabel1MouseEntered
 
     private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
@@ -247,49 +256,49 @@ public class Videos extends javax.swing.JFrame {
 
     private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
         jLabel2.setForeground(Color.RED);
-        jLabel2.setToolTipText("Digite o nome do vídeo");
+        jLabel2.setToolTipText("Digite o nome do avaliador");
     }//GEN-LAST:event_jLabel2MouseEntered
 
     private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
         jLabel2.setForeground(Color.BLACK);
     }//GEN-LAST:event_jLabel2MouseExited
 
-    private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
-        jLabel3.setForeground(Color.RED);
-        jLabel3.setToolTipText("Digite o nome do vídeo");
-    }//GEN-LAST:event_jLabel3MouseEntered
-
-    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
-        jLabel3.setForeground(Color.BLACK);
-    }//GEN-LAST:event_jLabel3MouseExited
-
     private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
         jLabel4.setForeground(Color.RED);
-        jLabel4.setToolTipText("Digite o nome do vídeo");
+        jLabel4.setToolTipText("Digite o login do avaliador");
     }//GEN-LAST:event_jLabel4MouseEntered
 
     private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
         jLabel4.setForeground(Color.BLACK);
     }//GEN-LAST:event_jLabel4MouseExited
 
+    private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
+        jLabel3.setForeground(Color.RED);
+        jLabel3.setToolTipText("Digite o email do avaliador");
+    }//GEN-LAST:event_jLabel3MouseEntered
+
+    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
+        jLabel3.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jLabel3MouseExited
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Video video = new Video();
-        video.setUrl_video(jTUrlVideo.getText());
-        video.setNome_video(jTNomeVideo.getText());
-        video.setNome_dono(jTNomeDonoVideo.getText());
-        video.setTipo_video(jTTipoVideo.getText());
-        String url = jTUrlVideo.getText();
-        String nome = jTNomeVideo.getText();
-        String nomeDono = jTNomeDonoVideo.getText();
-        String tipo = jTTipoVideo.getText();
-        int o = JOptionPane.showConfirmDialog(rootPane, "Nome: " + nome + "\n" + "Url: " + url + "\n" + "Nome do Dono: " + nomeDono + "\n" + "Tipo: " + tipo);
+        Avaliador avaliador = new Avaliador();
+        avaliador.setCpf(jTCpfAvaliador.getText());
+        avaliador.setEmail(jTEmailAvaliador.getText());
+        avaliador.setLogin(Integer.valueOf(jTLoginAvaliador.getText()));
+        avaliador.setNome_avaliador(jTNomeAvaliador.getText());
+        String cpf = jTCpfAvaliador.getText();
+        String email = jTEmailAvaliador.getText();
+        int login = Integer.valueOf(jTLoginAvaliador.getText());
+        String nome = jTNomeAvaliador.getText();
+        int o = JOptionPane.showConfirmDialog(rootPane, "Nome: " + nome + "\n" + "Login: " + login + "\n" + "Email: " + email + "\n" + "Cpf: " + cpf);
         if(o==0){
-            VideoDAO vd = new VideoDAO();
-            vd.inserirVideo(video);
+            AvaliadorDAO ad = new AvaliadorDAO();
+            ad.inserirAvaliador(avaliador);
         }
          else{
             JOptionPane.showMessageDialog(rootPane, "Realize o cadastro novamente:(");
-        }
+       }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -309,20 +318,20 @@ public class Videos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Videos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Avaliadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Videos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Avaliadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Videos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Avaliadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Videos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Avaliadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Videos().setVisible(true);
+                new Avaliadores().setVisible(true);
             }
         });
     }
@@ -336,9 +345,9 @@ public class Videos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTNomeDonoVideo;
-    private javax.swing.JTextField jTNomeVideo;
-    private javax.swing.JTextField jTTipoVideo;
-    private javax.swing.JTextField jTUrlVideo;
+    private javax.swing.JTextField jTCpfAvaliador;
+    private javax.swing.JTextField jTEmailAvaliador;
+    private javax.swing.JTextField jTLoginAvaliador;
+    private javax.swing.JTextField jTNomeAvaliador;
     // End of variables declaration//GEN-END:variables
 }
