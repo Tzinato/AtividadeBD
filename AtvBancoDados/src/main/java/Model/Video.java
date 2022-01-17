@@ -7,6 +7,7 @@ public class Video {
     private String nome_video;
     private String nome_dono;
     private String tipo_video;
+    private int nota;
 
     public Video(String url_video, String nome_video, String nome_dono, String tipo_video) {
         this.url_video = url_video;
@@ -53,6 +54,15 @@ public class Video {
     public void setTipo_video(String tipo_video) {
         this.tipo_video = tipo_video;
     }
+
+    public int getNota() {
+        return nota;
+    }
+
+    public void setNota(int nota) {
+        this.nota = nota;
+    }
+    
     
 
 }

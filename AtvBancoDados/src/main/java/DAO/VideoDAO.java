@@ -5,10 +5,13 @@
  */
 package DAO;
 import Conexao.conexao;
+import Model.Avaliador;
 import Model.Video;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -36,5 +39,48 @@ public class VideoDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }  
+    } 
+   public List <Video> listaDeVideos(){
+        try {
+            String SQL="SELECT nome_cliente, nome_video, url_video  FROM thales_zinato.video";
+            List <Video>listaDeVideos = new ArrayList<Video>();
+            Connection c =conexao.getConexao();
+            PreparedStatement ps=c.prepareStatement(SQL);
+            ResultSet resultado = ps.executeQuery();
+            while(resultado.next()){
+                Video atual=new Video();
+                atual=this.pegaDados(resultado);
+                listaDeVideos.add(atual);
+            }
+
+            return listaDeVideos;
+        } catch (SQLException ex) {
+            Logger.getLogger(AvaliadorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+
+    private Video pegaDados(ResultSet resultado){
+        try {
+            Video atual=new Video();
+            atual.setNome_video (resultado.getString("nome_video"));
+            atual.setNome_dono(resultado.getString("nome_cliente"));
+            atual.setNome_dono(resultado.getString("url_video"));
+            return atual;
+        } catch (SQLException ex) {
+            Logger.getLogger(AvaliadorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    public void inserirNota(int n, String nome){
+       try {
+           String SQL = "UPDATE thales_zinato.video SET nota_video  WHERE nome_video VALUES(?,?)";
+           Connection minhaConexao = conexao.getConexao();
+           PreparedStatement comando = minhaConexao.prepareStatement(SQL);
+           comando.setInt(1, n);
+       } catch (SQLException ex) {
+           Logger.getLogger(VideoDAO.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }
 }
